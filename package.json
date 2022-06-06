@@ -1,0 +1,20 @@
+{
+  "name": "afro-mnemonics",
+  "version": "1.0.0",
+  "description": "African Languages Wordlist Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Safari-Chain/afro-mnemonics.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Safari-Chain/afro-mnemonics/issues"
+  },
+  "homepage": "https://github.com/Safari-Chain/afro-mnemonics#readme"
+}
