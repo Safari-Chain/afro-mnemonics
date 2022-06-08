@@ -17,7 +17,7 @@ Listed below are African Languages for which a wordlist is currently under devel
     - Words can be uniquely determined by typing the first 4 characters (sometimes less).
     - Only words with 4-8 letters.
     - No numeral adjectives.
-    - No words with more than two synonyms to make it easy to identify the words.
+    - No words with more than one synonyms to make it easy to identify the words.
     - No words with double vocals (like: ogun).
 
 
