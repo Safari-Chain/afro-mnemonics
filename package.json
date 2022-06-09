@@ -4,7 +4,7 @@
   "description": "African Languages Wordlist Repository",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/yoruba/parse"
   },
   "repository": {
     "type": "git",
