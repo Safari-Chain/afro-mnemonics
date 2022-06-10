@@ -9,32 +9,37 @@
 const fs = require("fs");
 const path = require("path");
 
-try {
-    //console.log(path.resolve("./text-files/yoruba/yoruba-lexicon.txt"))
-    const data = fs.readFileSync('./text-files/yoruba/yoruba-lexicon.txt', 'utf8');
-    //fs.writeFileSync('./text-files/yoruba/test.txt', data.split("\n"));
-    let lines = data.split("\n");
-    const YORUBA_WORDS_REGEX = /\b[A-Z].*?\b,\s[a-z]+\./g;
-    let wordlist = [];
-    for(let line of lines){
-        let matches = line.match(YORUBA_WORDS_REGEX);
-        if(!!matches) {
-            let words = matches[0].split(",");
-            words.pop();
-            for(let word of words){
-                wordlist.push(word.trim());
-            }
-            
 
-        }
-    }
-
-    fs.writeFileSync('./text-files/yoruba/wordlist.txt', wordlist.join("\n"));
-
+function parseYorubaWords() {
+    try {
+        //console.log(path.resolve("./text-files/yoruba/yoruba-lexicon.txt"))
+        const data = fs.readFileSync('./text-files/yoruba/yoruba-lexicon.txt', 'utf8');
+        //fs.writeFileSync('./text-files/yoruba/test.txt', data.split("\n"));
+        let lines = data.split("\n");
+        const YORUBA_WORDS_REGEX = /\b[A-Z].*?\b,\s[a-z]+\./g;
+        let wordlist = [];
+        for(let line of lines){
+            let matches = line.match(YORUBA_WORDS_REGEX);
+            if(!!matches) {
+                let words = matches[0].split(",");
+                words.pop();
+                for(let word of words){
+                    wordlist.push(word.trim());
+                }
+                
     
-} catch (err) {
-    console.error(err);
+            }
+        }
+    
+        fs.writeFileSync('./text-files/yoruba/wordlist.txt', wordlist.join("\n"));
+    
+        
+    } catch (err) {
+        console.error(err);
+    }
 }
+
+
 
 function groupIntoSentences(wordsArray){
     let sentencesArray = [];
@@ -56,3 +61,22 @@ function groupIntoSentences(wordsArray){
 
     return sentencesArray;
 }
+
+
+//Parse Swahili words:
+//make sure each word is unique.
+function parseSwahiliWords() {
+    const data = fs.readFileSync('./text-files/swahili/swahili', 'utf8');
+    const wordsArray = data.split("\n");
+    //Create wordlist array.
+    //Iterate over each word, if word is not in wordlist array, add it,
+    //else move to the next word.
+    const wordlist = [];
+    for(let word of wordsArray){
+        if(!wordlist.includes(word.trim().toLowerCase().normalize("NFC"))) wordlist.push(word.trim().toLowerCase().normalize("NFC"));
+    }
+
+    fs.writeFileSync('./text-files/swahili/wordlist.txt', wordlist.join("\n"));
+}
+
+parseSwahiliWords();
