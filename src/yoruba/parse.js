@@ -92,6 +92,22 @@ function getUniqueWords() {
   );
 }
 
+function fourToEightChars(){
+  const data = fs.readFileSync("./text-files/swahili/unique-wordlist.txt", "utf8");
+  const wordsArray = data.split("\n");
+  let filterArr = wordsArray.filter(el => {
+    return el.trim().length >= 4 && el.trim().length <= 8;
+  });
+
+  let result = removeOtherLangWords(filterArr);
+
+  fs.writeFileSync(
+    "./text-files/swahili/four-eight-wordlist.txt",
+    result.join("\n")
+  );
+  
+}
+
 function isKeyUnique(arr, index, key) {
   let newArr = arr.splice(index, 1);
   for (let i = 0; i < newArr.length; i++) {
@@ -101,5 +117,36 @@ function isKeyUnique(arr, index, key) {
   return true;
 }
 
-getUniqueWords();
+function removeOtherLangWords(words){
+  const wordlists = [];
+
+  const czech = fs.readFileSync("./wordlists/czech.txt", "utf8");
+  wordlists.push(czech.split("\n"));
+
+  const italian = fs.readFileSync("./wordlists/italian.txt", "utf8");
+  wordlists.push(italian.split("\n"));
+
+  const  english = fs.readFileSync("./wordlists/english.txt", "utf8");
+  wordlists.push(english.split("\n"));
+
+  const  french = fs.readFileSync("./wordlists/french.txt", "utf8");
+  wordlists.push(french.split("\n"));
+
+  const spanish = fs.readFileSync("./wordlists/spanish.txt", "utf8");
+  wordlists.push(spanish.split("\n"));
+
+  const portuguese = fs.readFileSync("./wordlists/portuguese.txt", "utf8");
+  wordlists.push(portuguese.split("\n"));
+
+  for(let wordlist of wordlists){
+    for(let i = 0; i < words.length; i++){
+      if(wordlist.includes(words[i])) words.splice(i, 1);
+    }
+  }
+
+  return words;
+}
+
+//getUniqueWords();
 // parseSwahiliWords();
+fourToEightChars();
