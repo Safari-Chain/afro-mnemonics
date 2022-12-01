@@ -4,7 +4,8 @@
   "description": "African Languages Wordlist Repository",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/yoruba/parse"
+    "start": "node ./src/yoruba/parse",
+    "parse:finalwords": "node ./src/parseFinalWordlist.js"
   },
   "repository": {
     "type": "git",
