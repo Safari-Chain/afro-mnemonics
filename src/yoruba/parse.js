@@ -10,12 +10,10 @@ const path = require("path");
 
 function parseYorubaWords() {
   try {
-    //console.log(path.resolve("./text-files/yoruba/yoruba-lexicon.txt"))
     const data = fs.readFileSync(
       "./text-files/yoruba/yoruba-lexicon.txt",
       "utf8"
     );
-    //fs.writeFileSync('./text-files/yoruba/test.txt', data.split("\n"));
     let lines = data.split("\n");
     const YORUBA_WORDS_REGEX = /\b[A-Z].*?\b,\s[a-z]+\./g;
     let wordlist = [];
@@ -81,7 +79,7 @@ function getUniqueWords() {
   for (let i = 0; i < wordsArray.length; i++) {
     let key = wordsArray[i].slice(0, 4);
     let clonedWordsArray = wordsArray.slice();
-    console.log(isKeyUnique(clonedWordsArray, i, key))
+    console.log(isKeyUnique(clonedWordsArray, i, key));
     if (isKeyUnique(clonedWordsArray, i, key)) {
       uniqueWords.push(wordsArray[i]);
     }
@@ -92,10 +90,13 @@ function getUniqueWords() {
   );
 }
 
-function fourToEightChars(){
-  const data = fs.readFileSync("./text-files/swahili/unique-wordlist.txt", "utf8");
+function fourToEightChars() {
+  const data = fs.readFileSync(
+    "./text-files/swahili/unique-wordlist.txt",
+    "utf8"
+  );
   const wordsArray = data.split("\n");
-  let filterArr = wordsArray.filter(el => {
+  let filterArr = wordsArray.filter((el) => {
     return el.trim().length >= 4 && el.trim().length <= 8;
   });
 
@@ -105,7 +106,6 @@ function fourToEightChars(){
     "./text-files/swahili/four-eight-wordlist.txt",
     result.join("\n")
   );
-  
 }
 
 function isKeyUnique(arr, index, key) {
@@ -117,7 +117,7 @@ function isKeyUnique(arr, index, key) {
   return true;
 }
 
-function removeOtherLangWords(words){
+function removeOtherLangWords(words) {
   const wordlists = [];
 
   const czech = fs.readFileSync("./wordlists/czech.txt", "utf8");
@@ -126,10 +126,10 @@ function removeOtherLangWords(words){
   const italian = fs.readFileSync("./wordlists/italian.txt", "utf8");
   wordlists.push(italian.split("\n"));
 
-  const  english = fs.readFileSync("./wordlists/english.txt", "utf8");
+  const english = fs.readFileSync("./wordlists/english.txt", "utf8");
   wordlists.push(english.split("\n"));
 
-  const  french = fs.readFileSync("./wordlists/french.txt", "utf8");
+  const french = fs.readFileSync("./wordlists/french.txt", "utf8");
   wordlists.push(french.split("\n"));
 
   const spanish = fs.readFileSync("./wordlists/spanish.txt", "utf8");
@@ -138,9 +138,9 @@ function removeOtherLangWords(words){
   const portuguese = fs.readFileSync("./wordlists/portuguese.txt", "utf8");
   wordlists.push(portuguese.split("\n"));
 
-  for(let wordlist of wordlists){
-    for(let i = 0; i < words.length; i++){
-      if(wordlist.includes(words[i])) words.splice(i, 1);
+  for (let wordlist of wordlists) {
+    for (let i = 0; i < words.length; i++) {
+      if (wordlist.includes(words[i])) words.splice(i, 1);
     }
   }
 
@@ -149,4 +149,4 @@ function removeOtherLangWords(words){
 
 //getUniqueWords();
 // parseSwahiliWords();
-fourToEightChars();
+// fourToEightChars();
